@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
 
-    path('question/',views.get_question)
+    path('',views.get_question)
 
 ]
