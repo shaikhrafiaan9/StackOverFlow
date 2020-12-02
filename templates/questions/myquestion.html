@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StackOverFlow</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+  <nav class="row w3-orange w3-mobile">
+    <h1 class="col-md-3 text-center"><b>StackOverFlow</b></h1>
+  </nav>
+  <br>
+  <br>
+  <center class="row w3-container w3-margin-top w3-mobile">
+    <form method="post" class="col-md-6 col-md-offset-3"" >
+      {% csrf_token %}
+      <div class="input-group w3-container">
+        <input type="text" class="form-control" name="language" placeholder="Search Question for Languages">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search w3-round"></i>
+          </button>
+        </div>
+        <form>
+    </center>
+
+    <div class="w3-conatiner row w3-mobile ">
+      <br>
+            {% if questions %}
+              {% for a,b,c in questions %}
+              <div class="w3-container w3-card-4 w3-round-large w3-orange w3-mobile" style="width:70%;margin:auto">
+                <ul class="">
+                  <div class="w3-margin-top w3-margin-bottom w3-padding w3-mobile">
+                    QUESTION: {{b}}
+                  </div>
+                  {% for tags in a %}
+                    <button type="button" name="button" class=" w3-mobile w3-btn w3-orange w3-round-xlarge w3-card">{{tags}}</button>
+                  {% endfor %}
+
+               <!--<div class="w3-container">
+                 <h1>Answer Count : {{c}}</h1>
+               </div>-->
+              </ul>
+              </div><br>
+              {% endfor %}
+              <div class="w3-container" style="width:70%;margin:auto">
+                {% include "questions/paginator.html" with page=questions %}
+              </div>
+            {% endif %}
+    </div>
+</body>
+
+</html>
